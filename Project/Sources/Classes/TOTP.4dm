@@ -50,6 +50,4 @@ Function provisioningUri($issuer : Text)->$url : Text
 	End if 
 	
 Function timecode($timestamp : Integer)->$timecode : Integer
-	// REFERENCE: https://discuss.4d.com/t/capacity-of-a-real-compiled-or-interpreted/18937/14
-	$timecode:=((($timestamp*1000)/(This:C1470.period*1000)))  // tests pass only if uncompiled
-	$timecode:=($timestamp/This:C1470.period)  // tests pass compiled and uncompiled
+	$timecode:=($timestamp\This:C1470.period)  // trims any remainder
