@@ -1,6 +1,6 @@
 //%attributes = {"invisible":true}
 
-#DECLARE ($url : Text)->$encoded : Text
+#DECLARE($url : Text)->$encoded : Text
 
 //var $executed : Boolean
 //$executed:=PHP Execute(""; "urlencode"; $encoded; $url)
@@ -49,7 +49,7 @@ For ($i; 1; Length:C16($url))
 		End for 
 	Else 
 		If ($code=32)
-			$encoded:=$encoded+"+"
+			$encoded:=$encoded+"%20"
 		Else 
 			$encoded:=$encoded+$char
 		End if 
