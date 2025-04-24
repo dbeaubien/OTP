@@ -14,7 +14,7 @@ Class constructor($secret : Text)
 	This:C1470._optSet($opt; "after"; Is real:K8:4; 1)
 	
 Function at($timestamp : Integer)->$return : Integer
-	$return:=This:C1470.generateOTP(This:C1470.timecode($timestamp)); 
+	$return:=This:C1470.generateOTP(This:C1470.timecode($timestamp))
 	
 Function now()->$return : Integer
 	$return:=This:C1470.generateOTP(This:C1470.timecode(time_()))
