@@ -1,42 +1,41 @@
 //%attributes = {"invisible":true}
-C_TEXT:C284($1)
-C_LONGINT:C283($result; $lLength; $lDigitValue; $0; $i)
-
+#DECLARE($input : Text)->$result : Integer
 $result:=0
-$lLength:=Length:C16($1)
 
+var $lLength; $lDigitValue; $i : Integer
+$lLength:=Length:C16($input)
 For ($i; $lLength; 1; -1)
 	
 	Case of 
-		: ($1[[$i]]="F")
+		: ($input[[$i]]="F")
 			$lDigitValue:=15
-		: ($1[[$i]]="E")
+		: ($input[[$i]]="E")
 			$lDigitValue:=14
-		: ($1[[$i]]="D")
+		: ($input[[$i]]="D")
 			$lDigitValue:=13
-		: ($1[[$i]]="C")
+		: ($input[[$i]]="C")
 			$lDigitValue:=12
-		: ($1[[$i]]="B")
+		: ($input[[$i]]="B")
 			$lDigitValue:=11
-		: ($1[[$i]]="A")
+		: ($input[[$i]]="A")
 			$lDigitValue:=10
-		: ($1[[$i]]="9")
+		: ($input[[$i]]="9")
 			$lDigitValue:=9
-		: ($1[[$i]]="8")
+		: ($input[[$i]]="8")
 			$lDigitValue:=8
-		: ($1[[$i]]="7")
+		: ($input[[$i]]="7")
 			$lDigitValue:=7
-		: ($1[[$i]]="6")
+		: ($input[[$i]]="6")
 			$lDigitValue:=6
-		: ($1[[$i]]="5")
+		: ($input[[$i]]="5")
 			$lDigitValue:=5
-		: ($1[[$i]]="4")
+		: ($input[[$i]]="4")
 			$lDigitValue:=4
-		: ($1[[$i]]="3")
+		: ($input[[$i]]="3")
 			$lDigitValue:=3
-		: ($1[[$i]]="2")
+		: ($input[[$i]]="2")
 			$lDigitValue:=2
-		: ($1[[$i]]="1")
+		: ($input[[$i]]="1")
 			$lDigitValue:=1
 		Else 
 			$lDigitValue:=0
@@ -47,5 +46,3 @@ For ($i; $lLength; 1; -1)
 	End if 
 	
 End for 
-
-$0:=$result

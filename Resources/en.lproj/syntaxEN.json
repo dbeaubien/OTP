@@ -1,8 +1,14 @@
 {
 	"_method_": {
 		"OTP": {
-			"Syntax": "**OTP**()",
-			"Params": [],
+			"Syntax": "**OTP**() : Object",
+			"Params": [
+				[
+					"",
+					"Object",
+					"<-"
+				]
+			],
 			"Summary": ""
 		}
 	},
@@ -163,18 +169,61 @@
 	},
 	"Base32": {
 		"encode()": {
-			"Syntax": "**.encode**()",
-			"Params": [],
+			"Syntax": "**.encode**( *blob* : Blob; *include_padding* : Boolean )->encoded : Text",
+			"Params": [
+				[
+					"blob",
+					"Blob",
+					"->"
+				],
+				[
+					"include_padding",
+					"Boolean",
+					"->"
+				],
+				[
+					"encoded",
+					"Text",
+					"<-"
+				]
+			],
 			"Summary": ""
 		},
 		"decode()": {
-			"Syntax": "**.decode**()",
-			"Params": [],
+			"Syntax": "**.decode**( *b32* : Text )->blob : Blob",
+			"Params": [
+				[
+					"b32",
+					"Text",
+					"->"
+				],
+				[
+					"blob",
+					"Blob",
+					"<-"
+				]
+			],
 			"Summary": ""
 		},
 		"encodeText()": {
-			"Syntax": "**.encodeText**()",
-			"Params": [],
+			"Syntax": "**.encodeText**( *text* : Text; *include_padding* : Boolean )->encoded_text : Text",
+			"Params": [
+				[
+					"text",
+					"Text",
+					"->"
+				],
+				[
+					"include_padding",
+					"Boolean",
+					"->"
+				],
+				[
+					"encoded_text",
+					"Text",
+					"<-"
+				]
+			],
 			"Summary": ""
 		}
 	},

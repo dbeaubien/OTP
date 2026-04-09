@@ -3,27 +3,16 @@
 Class constructor
 	singletonize(This:C1470)
 	
-Function encodeText
-	C_TEXT:C284($1)
-	var $0; $1 : Text
-	var $2 : Boolean
-	var $blob : Blob
-	TEXT TO BLOB:C554($1; $blob; UTF8 text without length:K22:17)
-	If (Count parameters:C259>1)
-		$0:=This:C1470.encode($blob; $2)
-	Else 
-		$0:=This:C1470.encode($blob)
-	End if 
 	
-Function encode
-	var $1; $blob : Blob
-	var $2; $padding : Boolean
-	var $0; $encoded : Text  //$0 contains a base32 encoded string
-	$blob:=$1
-	If (Count parameters:C259>1)
-		$padding:=$2
-	Else 
-		$padding:=True:C214  // default padding
+Function encodeText($text : Text; $include_padding : Boolean)->$encoded_text : Text
+	var $blob : Blob
+	TEXT TO BLOB:C554($text; $blob; UTF8 text without length:K22:17)
+	$encoded_text:=This:C1470.encode($blob; $include_padding)
+	
+	
+Function encode($blob : Blob; $include_padding : Boolean)->$encoded : Text
+	If (Count parameters:C259=1)
+		$include_padding:=True:C214  // default padding
 	End if 
 	
 	var $alfa : Text
@@ -91,25 +80,22 @@ Function encode
 		$encoded:=$encoded+$alfa[[$fiveBits]]
 	End if 
 	
-	If ($padding)
+	If ($include_padding)
 		If (Length:C16($encoded)%8#0)
 			$encoded:=$encoded+("="*(8-(Length:C16($encoded)%8)))
 		End if 
 	End if 
 	
-	$0:=$encoded
 	
-Function decode
-	C_BLOB:C604($0; $blob)
-	C_TEXT:C284($1; $b32)
+Function decode($b32 : Text)->$blob : Blob
 	SET BLOB SIZE:C606($blob; 0)
 	
-	C_TEXT:C284($alfa)
-	C_LONGINT:C283($z; $x; $i; $cc; $flt; $padc; $bf; $offset; $index)
+	var $alfa : Text
+	var $z; $x; $i; $cc; $flt; $padc; $bf; $offset; $index : Integer
 	
-	$x:=Length:C16($1)
-	$b32:=$1
-	C_LONGINT:C283($bf; $bits)
+	$x:=Length:C16($b32)
+	
+	var $bf; $bits : Integer
 	$bf:=0
 	$bits:=0
 	$padc:=0
@@ -157,4 +143,4 @@ Function decode
 			SET BLOB SIZE:C606($blob; $z-$padc)
 		End if 
 	End if 
-	$0:=$blob
+	

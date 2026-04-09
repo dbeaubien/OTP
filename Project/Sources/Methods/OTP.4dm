@@ -1,4 +1,6 @@
 //%attributes = {"invisible":true,"shared":true,"preemptive":"capable"}
-var $0 : Object
+#DECLARE() : Object
+
 init
-$0:=cs:C1710
+
+return cs:C1710
