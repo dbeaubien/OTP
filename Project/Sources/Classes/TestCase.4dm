@@ -1,6 +1,7 @@
+property functions : Collection
 
 Class constructor
-	This:C1470.functions:=New collection:C1472()  // CANNOT FIND autommatically test_ functions by name or annotation using 4d
+	This:C1470.functions:=[]  // CANNOT FIND autommatically test_ functions by name or annotation using 4d
 	
 Function beforeClass
 	
@@ -20,29 +21,25 @@ Function run()
 	End for each 
 	This:C1470.afterClass()
 	
-Function assertEquals
-	var $1; $2 : Variant
-	var $3; $message : Text
+Function assertEquals($value_1 : Variant; $value_2 : Variant; $message : Text)
 	
-	If (Count parameters:C259>2)
-		$message:=$3
-	Else 
-		$message:="'"+This:C1470._toString($2)+"' not equals to expected '"+This:C1470._toString($1)+"'"
+	If (Count parameters:C259<=2)
+		$message:="'"+This:C1470._toString($value_2)+"' not equals to expected '"+This:C1470._toString($value_1)+"'"
 	End if 
 	
 	Case of 
-		: (Value type:C1509($1)=Is object:K8:27)
-			ASSERT:C1129(Value type:C1509($2)=Is object:K8:27; $message)
-			ASSERT:C1129(New collection:C1472($1).equal(New collection:C1472($2)); $message)
-		: (Value type:C1509($2)=Is object:K8:27)
+		: (Value type:C1509($value_1)=Is object:K8:27)
+			ASSERT:C1129(Value type:C1509($value_2)=Is object:K8:27; $message)
+			ASSERT:C1129(New collection:C1472($value_1).equal(New collection:C1472($value_2)); $message)
+		: (Value type:C1509($value_2)=Is object:K8:27)
 			ASSERT:C1129(False:C215; $message)
-		: (Value type:C1509($1)=Is collection:K8:32)
-			ASSERT:C1129(Value type:C1509($2)=Is collection:K8:32)
-			ASSERT:C1129($1.equal($2); $message)
-		: (Value type:C1509($2)=Is collection:K8:32)
+		: (Value type:C1509($value_1)=Is collection:K8:32)
+			ASSERT:C1129(Value type:C1509($value_2)=Is collection:K8:32)
+			ASSERT:C1129($value_1.equal($value_2); $message)
+		: (Value type:C1509($value_2)=Is collection:K8:32)
 			ASSERT:C1129(False:C215; $message)
 		Else 
-			ASSERT:C1129($1=$2; $message)
+			ASSERT:C1129($value_1)
 	End case 
 	
 	

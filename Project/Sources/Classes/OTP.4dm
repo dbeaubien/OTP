@@ -1,13 +1,12 @@
 
+property digest : Text
+property digits : Real
+property secret : Text
 
 /// Constructor for the OTP class
-Class constructor($secret : Text)
-	var $2; $opt : Object  // optional param
+Class constructor($secret : Text; $opt : Object)
 	ASSERT:C1129(Count parameters:C259>=1)
 	ASSERT:C1129(Count parameters:C259<=2)
-	If (Count parameters:C259=2)
-		$opt:=$2
-	End if 
 	
 	This:C1470.secret:=$secret  // TODO encode cs.Base32.instance useless to encode/decode..., depend on passed format, add option?
 	

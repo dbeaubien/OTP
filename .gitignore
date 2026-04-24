@@ -1,3 +1,30 @@
 Project/DerivedData
-Data
-userPreferences.*
+
+# No user preferences
+userPreferences.*/
+
+# No Trash
+Project/Trash/
+
+# No derived data
+DerivedData/
+
+# No data
+[dD][aA][tT][aA]/
+Data/
+
+# No logs
+App Logs/
+Logs/
+
+Settings/buildApp.4DSettings
+
+# System files
+.DS_Store
+ehthumbs.db
+Thumbs.db
+backupHistory.json
+Libraries/lib4d-arm64.dylib
+
+# Other
+.specstory/

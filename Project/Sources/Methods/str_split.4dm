@@ -1,14 +1,13 @@
 //%attributes = {"invisible":true}
 
-#DECLARE ($text : Text; $size : Integer)->$splitted : Collection
+#DECLARE($text : Text; $size : Integer)->$splitted : Collection
 
-$splitted:=New collection:C1472()
+$splitted:=[]
 
-C_LONGINT:C283($begin; $limit)
+var $begin; $limit : Integer
 $begin:=1
 $limit:=(Length:C16($text)+1)
 While (($begin+$size)<=$limit)
 	$splitted.push(Substring:C12($text; $begin; $size))
-	$begin:=$begin+$size
+	$begin+=$size
 End while 
-
