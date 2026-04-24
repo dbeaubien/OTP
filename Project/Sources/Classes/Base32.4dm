@@ -95,7 +95,7 @@ Function decode($b32 : Text)->$blob : Blob
 	
 	$x:=Length:C16($b32)
 	
-	var $bf; $bits : Integer
+	var $bits : Integer
 	$bf:=0
 	$bits:=0
 	$padc:=0

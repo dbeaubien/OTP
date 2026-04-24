@@ -1,16 +1,12 @@
 //%attributes = {"invisible":true}
 //%attributes = {}
-
-C_OBJECT:C1216($1)  // new instance to singletonize
-C_OBJECT:C1216($class)
-$class:=OB Class:C1730($1)
+#DECLARE($object : Object)
+var $class : Object:=OB Class:C1730($object)  // new instance to singletonize
 
 If ($class.instance=Null:C1517)
 	
 	Use ($class)
-		
-		// $class.instance:=OB Copy($1; ck shared)  // work only if no sub obj or col, because this will create a shared ground
-		$class.instance:=OB Copy:C1225($1; ck shared:K85:29; $class)
+		$class.instance:=OB Copy:C1225($object; ck shared:K85:29; $class)
 		
 		Use ($class)
 			$class._new:=This:C1470.new

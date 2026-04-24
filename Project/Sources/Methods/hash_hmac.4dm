@@ -1,14 +1,14 @@
 //%attributes = {"invisible":true}
-#DECLARE ($algoName : Text; $data : Variant; $secret : Variant)->$hash : Text
+#DECLARE($algoName : Text; $data : Variant; $secret : Variant)->$hash : Text
 
 // LICENSE:  
 // https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/LICENSE.md
 // https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/Project/Sources/Classes/jwt.4dm
 
-C_BLOB:C604($outerKey; $innerKey; $b)
-C_LONGINT:C283($blockSize; $i; $byte; $algo)
+var $outerKey; $innerKey; $b : Blob
+var $blockSize; $i; $byte; $algo : Integer
 
-C_BLOB:C604($key; $message)
+var $key; $message : Blob
 
 $algoName:=Uppercase:C13($algoName)
 
