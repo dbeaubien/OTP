@@ -1,5 +1,7 @@
 Class extends TestCase
 
+property base32 : cs:C1710.Base32
+
 Class constructor
 	Super:C1705()
 	This:C1470.functions:=New collection:C1472(This:C1470.test_encode_for_otp; This:C1470.test_encode_pure)

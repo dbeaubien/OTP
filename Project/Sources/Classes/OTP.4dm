@@ -44,7 +44,7 @@ Function generateOTP($input : Integer)->$otp : Integer
 	$otp:=$code%(10^Int:C8(This:C1470.digits))
 	
 Function byteSecret()->$binary : Blob
-	$binary:=cs:C1710.Base32.instance.decode(This:C1470.secret)
+	$binary:=cs:C1710.Base32.new().decode(This:C1470.secret)
 	
 Function intToBytestring($int : Integer)->$blob : Blob  // $text : Text
 	var $blobTmp : Blob

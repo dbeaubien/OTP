@@ -31,15 +31,19 @@ Function assertEquals($value_1 : Variant; $value_2 : Variant; $message : Text)
 		: (Value type:C1509($value_1)=Is object:K8:27)
 			ASSERT:C1129(Value type:C1509($value_2)=Is object:K8:27; $message)
 			ASSERT:C1129(New collection:C1472($value_1).equal(New collection:C1472($value_2)); $message)
+			
 		: (Value type:C1509($value_2)=Is object:K8:27)
 			ASSERT:C1129(False:C215; $message)
+			
 		: (Value type:C1509($value_1)=Is collection:K8:32)
 			ASSERT:C1129(Value type:C1509($value_2)=Is collection:K8:32)
 			ASSERT:C1129($value_1.equal($value_2); $message)
+			
 		: (Value type:C1509($value_2)=Is collection:K8:32)
 			ASSERT:C1129(False:C215; $message)
+			
 		Else 
-			ASSERT:C1129($value_1)
+			ASSERT:C1129($value_1=$value_2; $message)
 	End case 
 	
 	

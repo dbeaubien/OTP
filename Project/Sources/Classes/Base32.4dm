@@ -6,6 +6,9 @@ Class constructor
 	
 Function encodeText($text : Text; $include_padding : Boolean)->$encoded_text : Text
 	var $blob : Blob
+	If (Count parameters:C259=1)
+		$include_padding:=True:C214
+	End if 
 	TEXT TO BLOB:C554($text; $blob; UTF8 text without length:K22:17)
 	$encoded_text:=This:C1470.encode($blob; $include_padding)
 	

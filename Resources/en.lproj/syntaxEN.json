@@ -15,18 +15,23 @@
 	"cs.OTP": {
 		"TOTP": {
 			"new()": {
-				"Syntax": "**.new**( *secret* : Text )",
+				"Syntax": "**.new**( *secret* : Text; *opt* : Object )",
 				"Params": [
 					[
 						"secret",
 						"Text",
+						"->"
+					],
+					[
+						"opt",
+						"Object",
 						"->"
 					]
 				],
 				"Summary": ""
 			}
 		},
-		"Base32": {
+		"TestOTP": {
 			"new()": {
 				"Syntax": "**.new**()",
 				"Params": [],
@@ -40,27 +45,21 @@
 				"Summary": ""
 			}
 		},
-		"TestHOTP": {
+		"TestBase32": {
 			"new()": {
 				"Syntax": "**.new**()",
 				"Params": [],
 				"Summary": ""
 			}
 		},
-		"OTP": {
+		"Base32": {
 			"new()": {
-				"Syntax": "**.new**( *secret* : Text )",
-				"Params": [
-					[
-						"secret",
-						"Text",
-						"->"
-					]
-				],
+				"Syntax": "**.new**()",
+				"Params": [],
 				"Summary": ""
 			}
 		},
-		"TestBase32": {
+		"TestHOTP": {
 			"new()": {
 				"Syntax": "**.new**()",
 				"Params": [],
@@ -81,31 +80,26 @@
 				"Summary": ""
 			}
 		},
-		"TestOTP": {
+		"OTP": {
 			"new()": {
-				"Syntax": "**.new**()",
-				"Params": [],
+				"Syntax": "**.new**( *secret* : Text; *opt* : Object )",
+				"Params": [
+					[
+						"secret",
+						"Text",
+						"->"
+					],
+					[
+						"opt",
+						"Object",
+						"->"
+					]
+				],
 				"Summary": ""
 			}
 		}
 	},
 	"TOTP": {
-		"timecode()": {
-			"Syntax": "**.timecode**( *timestamp* : Integer )->timecode : Integer",
-			"Params": [
-				[
-					"timestamp",
-					"Integer",
-					"->"
-				],
-				[
-					"timecode",
-					"Integer",
-					"<-"
-				]
-			],
-			"Summary": ""
-		},
 		"provisioningUri()": {
 			"Syntax": "**.provisioningUri**( *issuer* : Text )->url : Text",
 			"Params": [
@@ -123,10 +117,15 @@
 			"Summary": ""
 		},
 		"verify()": {
-			"Syntax": "**.verify**( *otp* : Integer )->return : Boolean",
+			"Syntax": "**.verify**( *otp* : Integer; *timestamp* : Integer )->return : Boolean",
 			"Params": [
 				[
 					"otp",
+					"Integer",
+					"->"
+				],
+				[
+					"timestamp",
 					"Integer",
 					"->"
 				],
@@ -149,6 +148,22 @@
 			],
 			"Summary": ""
 		},
+		"timecode()": {
+			"Syntax": "**.timecode**( *timestamp* : Integer )->timecode : Integer",
+			"Params": [
+				[
+					"timestamp",
+					"Integer",
+					"->"
+				],
+				[
+					"timecode",
+					"Integer",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
 		"at()": {
 			"Syntax": "**.at**( *timestamp* : Integer )->return : Integer",
 			"Params": [
@@ -165,249 +180,16 @@
 			],
 			"Summary": ""
 		},
+		"period": {
+			"Syntax": "period : Real"
+		},
+		"before": {
+			"Syntax": "before : Real"
+		},
+		"after": {
+			"Syntax": "after : Real"
+		},
 		"_inheritedFrom_": "OTP"
-	},
-	"Base32": {
-		"encode()": {
-			"Syntax": "**.encode**( *blob* : Blob; *include_padding* : Boolean )->encoded : Text",
-			"Params": [
-				[
-					"blob",
-					"Blob",
-					"->"
-				],
-				[
-					"include_padding",
-					"Boolean",
-					"->"
-				],
-				[
-					"encoded",
-					"Text",
-					"<-"
-				]
-			],
-			"Summary": ""
-		},
-		"decode()": {
-			"Syntax": "**.decode**( *b32* : Text )->blob : Blob",
-			"Params": [
-				[
-					"b32",
-					"Text",
-					"->"
-				],
-				[
-					"blob",
-					"Blob",
-					"<-"
-				]
-			],
-			"Summary": ""
-		},
-		"encodeText()": {
-			"Syntax": "**.encodeText**( *text* : Text; *include_padding* : Boolean )->encoded_text : Text",
-			"Params": [
-				[
-					"text",
-					"Text",
-					"->"
-				],
-				[
-					"include_padding",
-					"Boolean",
-					"->"
-				],
-				[
-					"encoded_text",
-					"Text",
-					"<-"
-				]
-			],
-			"Summary": ""
-		}
-	},
-	"TestHmac": {
-		"test_hash_hmac_sha256()": {
-			"Syntax": "**.test_hash_hmac_sha256**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_hash_hmac_sha1()": {
-			"Syntax": "**.test_hash_hmac_sha1**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_hash_hmac_md5()": {
-			"Syntax": "**.test_hash_hmac_md5**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"_inheritedFrom_": "TestCase"
-	},
-	"TestHOTP": {
-		"test_it_verify_the_code()": {
-			"Syntax": "**.test_it_verify_the_code**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_it_gets_the_good_code()": {
-			"Syntax": "**.test_it_gets_the_good_code**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_init()": {
-			"Syntax": "**.test_init**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"_inheritedFrom_": "TestCase"
-	},
-	"OTP": {
-		"intToBytestring()": {
-			"Syntax": "**.intToBytestring**( *int* : Integer )->blob : Blob",
-			"Params": [
-				[
-					"int",
-					"Integer",
-					"->"
-				],
-				[
-					"blob",
-					"Blob",
-					"<-"
-				]
-			],
-			"Summary": ""
-		},
-		"byteSecret()": {
-			"Syntax": "**.byteSecret**()->binary : Blob",
-			"Params": [
-				[
-					"binary",
-					"Blob",
-					"<-"
-				]
-			],
-			"Summary": ""
-		},
-		"generateOTP()": {
-			"Syntax": "**.generateOTP**( *input* : Integer )->otp : Integer",
-			"Params": [
-				[
-					"input",
-					"Integer",
-					"->"
-				],
-				[
-					"otp",
-					"Integer",
-					"<-"
-				]
-			],
-			"Summary": ""
-		}
-	},
-	"TestBase32": {
-		"test_encode_pure()": {
-			"Syntax": "**.test_encode_pure**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_encode_for_otp()": {
-			"Syntax": "**.test_encode_for_otp**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"_inheritedFrom_": "TestCase"
-	},
-	"TestCase": {
-		"assertEquals()": {
-			"Syntax": "**.assertEquals**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"afterTest()": {
-			"Syntax": "**.afterTest**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"beforeTest()": {
-			"Syntax": "**.beforeTest**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"afterClass()": {
-			"Syntax": "**.afterClass**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"run()": {
-			"Syntax": "**.run**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"beforeClass()": {
-			"Syntax": "**.beforeClass**()",
-			"Params": [],
-			"Summary": ""
-		}
-	},
-	"TestTOTP": {
-		"test_it_verify_drift()": {
-			"Syntax": "**.test_it_verify_drift**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_it_not_verify_the_code()": {
-			"Syntax": "**.test_it_not_verify_the_code**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_it_verify_now()": {
-			"Syntax": "**.test_it_verify_now**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_it_verify_the_code()": {
-			"Syntax": "**.test_it_verify_the_code**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_it_gets_the_good_code_at_given_times()": {
-			"Syntax": "**.test_it_gets_the_good_code_at_given_times**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_init_interval()": {
-			"Syntax": "**.test_init_interval**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_init()": {
-			"Syntax": "**.test_init**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"_inheritedFrom_": "TestCase"
-	},
-	"TestOTP": {
-		"test_generate_otp()": {
-			"Syntax": "**.test_generate_otp**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_init_digits()": {
-			"Syntax": "**.test_init_digits**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"test_init_digest()": {
-			"Syntax": "**.test_init_digest**()",
-			"Params": [],
-			"Summary": ""
-		},
-		"_inheritedFrom_": "TestCase"
 	},
 	"HOTP": {
 		"provisioningUri()": {
@@ -469,5 +251,278 @@
 			"Summary": ""
 		},
 		"_inheritedFrom_": "OTP"
+	},
+	"TestOTP": {
+		"test_generate_otp()": {
+			"Syntax": "**.test_generate_otp**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_init_digits()": {
+			"Syntax": "**.test_init_digits**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_init_digest()": {
+			"Syntax": "**.test_init_digest**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "TestCase"
+	},
+	"TestHmac": {
+		"test_hash_hmac_sha256()": {
+			"Syntax": "**.test_hash_hmac_sha256**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_hash_hmac_sha1()": {
+			"Syntax": "**.test_hash_hmac_sha1**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_hash_hmac_md5()": {
+			"Syntax": "**.test_hash_hmac_md5**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "TestCase"
+	},
+	"TestBase32": {
+		"test_encode_pure()": {
+			"Syntax": "**.test_encode_pure**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_encode_for_otp()": {
+			"Syntax": "**.test_encode_for_otp**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"base32": {
+			"Syntax": "base32 : cs.OTP.Base32"
+		},
+		"_inheritedFrom_": "TestCase"
+	},
+	"Base32": {
+		"decode()": {
+			"Syntax": "**.decode**( *b32* : Text )->blob : Blob",
+			"Params": [
+				[
+					"b32",
+					"Text",
+					"->"
+				],
+				[
+					"blob",
+					"Blob",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"encode()": {
+			"Syntax": "**.encode**( *blob* : Blob; *include_padding* : Boolean )->encoded : Text",
+			"Params": [
+				[
+					"blob",
+					"Blob",
+					"->"
+				],
+				[
+					"include_padding",
+					"Boolean",
+					"->"
+				],
+				[
+					"encoded",
+					"Text",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"encodeText()": {
+			"Syntax": "**.encodeText**( *text* : Text; *include_padding* : Boolean )->encoded_text : Text",
+			"Params": [
+				[
+					"text",
+					"Text",
+					"->"
+				],
+				[
+					"include_padding",
+					"Boolean",
+					"->"
+				],
+				[
+					"encoded_text",
+					"Text",
+					"<-"
+				]
+			],
+			"Summary": ""
+		}
+	},
+	"TestHOTP": {
+		"test_it_gets_the_good_code()": {
+			"Syntax": "**.test_it_gets_the_good_code**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_it_verify_the_code()": {
+			"Syntax": "**.test_it_verify_the_code**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_init()": {
+			"Syntax": "**.test_init**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "TestCase"
+	},
+	"TestCase": {
+		"assertEquals()": {
+			"Syntax": "**.assertEquals**( *value_1* : Variant; *value_2* : Variant; *message* : Text )",
+			"Params": [
+				[
+					"value_1",
+					"Variant",
+					"->"
+				],
+				[
+					"value_2",
+					"Variant",
+					"->"
+				],
+				[
+					"message",
+					"Text",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"run()": {
+			"Syntax": "**.run**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"beforeTest()": {
+			"Syntax": "**.beforeTest**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"afterTest()": {
+			"Syntax": "**.afterTest**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"afterClass()": {
+			"Syntax": "**.afterClass**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"beforeClass()": {
+			"Syntax": "**.beforeClass**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"functions": {
+			"Syntax": "functions : Collection"
+		}
+	},
+	"TestTOTP": {
+		"test_it_verify_drift()": {
+			"Syntax": "**.test_it_verify_drift**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_it_not_verify_the_code()": {
+			"Syntax": "**.test_it_not_verify_the_code**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_it_gets_the_good_code_at_given_times()": {
+			"Syntax": "**.test_it_gets_the_good_code_at_given_times**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_init_interval()": {
+			"Syntax": "**.test_init_interval**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_it_verify_the_code()": {
+			"Syntax": "**.test_it_verify_the_code**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_it_verify_now()": {
+			"Syntax": "**.test_it_verify_now**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"test_init()": {
+			"Syntax": "**.test_init**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "TestCase"
+	},
+	"OTP": {
+		"intToBytestring()": {
+			"Syntax": "**.intToBytestring**( *int* : Integer )->blob : Blob",
+			"Params": [
+				[
+					"int",
+					"Integer",
+					"->"
+				],
+				[
+					"blob",
+					"Blob",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"byteSecret()": {
+			"Syntax": "**.byteSecret**()->binary : Blob",
+			"Params": [
+				[
+					"binary",
+					"Blob",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"generateOTP()": {
+			"Syntax": "**.generateOTP**( *input* : Integer )->otp : Integer",
+			"Params": [
+				[
+					"input",
+					"Integer",
+					"->"
+				],
+				[
+					"otp",
+					"Integer",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"secret": {
+			"Syntax": "secret : Text"
+		},
+		"digits": {
+			"Syntax": "digits : Real"
+		},
+		"digest": {
+			"Syntax": "digest : Text"
+		}
 	}
 }
